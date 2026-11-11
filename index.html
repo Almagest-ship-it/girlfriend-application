@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Be My Girlfriend?</title>
+  <title>Girlfriend Application</title>
   <script src="https://jsdelivr.net"></script>
   <style>
     body {
@@ -21,12 +21,12 @@
 
     .container {
       text-align: center;
-      padding: 35px;
-      background: rgba(255, 255, 255, 0.92);
+      padding: 30px 25px;
+      background: rgba(255, 255, 255, 0.94);
       border-radius: 25px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
       max-width: 95%;
-      width: 500px;
+      width: 480px;
       position: relative;
     }
 
@@ -42,9 +42,26 @@
 
     h1 {
       color: #ff4d6d;
-      font-size: 2rem;
-      margin-bottom: 20px;
+      font-size: 1.85rem;
+      margin: 5px 0 15px 0;
       text-transform: uppercase;
+    }
+
+    h2 {
+      color: #c9184a;
+      font-size: 1.2rem;
+      margin: 0 0 15px 0;
+    }
+
+    .slide-badge {
+      display: inline-block;
+      background: #ffe5ec;
+      color: #ff4d6d;
+      font-weight: bold;
+      font-size: 0.85rem;
+      padding: 5px 14px;
+      border-radius: 20px;
+      margin-bottom: 8px;
     }
 
     .buttons {
@@ -52,13 +69,13 @@
       justify-content: center;
       align-items: center;
       position: relative;
-      height: 180px;
+      height: 170px;
       width: 100%;
     }
 
     .buttons button {
-      padding: 15px 40px;
-      font-size: 1.3rem;
+      padding: 15px 38px;
+      font-size: 1.25rem;
       font-weight: bold;
       border: none;
       border-radius: 50px;
@@ -71,61 +88,103 @@
     #yesBtn {
       background-color: #4cc9f0;
       color: white;
-      left: 15%;
+      left: 14%;
       z-index: 10;
     }
 
     #noBtn {
       background-color: #ff4d6d;
       color: white;
-      right: 15%;
+      right: 14%;
     }
 
-    .subtitle {
-      color: #555;
+    .form-group {
+      text-align: left;
+      margin-bottom: 14px;
+    }
+
+    .form-group label {
+      display: block;
+      font-weight: 600;
+      color: #c9184a;
+      margin-bottom: 5px;
       font-size: 0.95rem;
-      margin-bottom: 25px;
     }
 
-    .question-item {
+    .form-group input[type="text"],
+    .form-group input[type="number"],
+    .form-group select {
+      width: 100%;
+      padding: 11px 14px;
+      border: 1.5px solid #ffccd5;
+      border-radius: 12px;
+      font-size: 1rem;
+      box-sizing: border-box;
+      outline: none;
+      background: #fff8f9;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus {
+      border-color: #ff4d6d;
+      background: #fff;
+    }
+
+    .mcq-box {
       background: #fff0f3;
       padding: 15px;
       border-radius: 15px;
-      margin-bottom: 15px;
       text-align: left;
       border: 1px solid #ffccd5;
+      margin-bottom: 15px;
     }
 
-    .question-item p {
-      margin: 0 0 10px 0;
-      font-weight: 600;
+    .mcq-box p {
+      margin: 0 0 12px 0;
+      font-weight: 700;
       color: #c9184a;
     }
 
-    .radio-group {
-      display: flex;
-      gap: 25px;
-    }
-
-    .radio-group label {
-      font-weight: bold;
-      color: #333;
+    .mcq-option {
+      display: block;
+      background: white;
+      padding: 10px 12px;
+      border-radius: 10px;
+      margin-bottom: 8px;
+      border: 1px solid #ffccd5;
       cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 6px;
+      font-weight: 500;
+      color: #333;
     }
 
-    input[type="radio"] {
+    .mcq-option input {
       accent-color: #ff4d6d;
-      transform: scale(1.2);
+      margin-right: 8px;
+      transform: scale(1.15);
+    }
+
+    .disclaimer {
+      font-size: 0.82rem;
+      color: #666;
+      font-style: italic;
+      background: #f8f9fa;
+      padding: 10px;
+      border-radius: 10px;
+      margin: 15px 0;
+      border: 1px dashed #ffb3c1;
+    }
+
+    .nav-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      margin-top: 15px;
     }
 
     .action-btn {
-      display: inline-block;
-      margin-top: 15px;
-      padding: 15px 35px;
-      font-size: 1.2rem;
+      flex: 1;
+      padding: 14px 20px;
+      font-size: 1.05rem;
       font-weight: bold;
       background-color: #ff4d6d;
       color: white;
@@ -133,32 +192,47 @@
       border-radius: 50px;
       text-decoration: none;
       cursor: pointer;
-      box-shadow: 0 5px 15px rgba(255, 77, 109, 0.3);
+      box-shadow: 0 5px 15px rgba(255, 77, 109, 0.25);
       transition: transform 0.2s;
     }
 
     .action-btn:hover {
-      transform: scale(1.05);
+      transform: scale(1.03);
+    }
+
+    .back-btn {
+      background-color: #adb5bd;
+      box-shadow: none;
+      flex: 0.45;
     }
 
     .insta-btn {
+      display: block;
+      margin-top: 12px;
       background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
     }
 
-    .final-msg {
-      font-size: 1.15rem;
-      color: #444;
-      line-height: 1.5;
-      margin-bottom: 15px;
+    .summary-box {
+      background: #fff0f3;
+      border: 1px solid #ffccd5;
+      border-radius: 12px;
+      padding: 12px;
+      text-align: left;
+      font-size: 0.9rem;
+      color: #333;
+      white-space: pre-line;
+      margin-bottom: 12px;
+      max-height: 190px;
+      overflow-y: auto;
     }
 
     .kiss-animation {
-      font-size: 2.8rem;
+      font-size: 2.6rem;
       animation: kissBounce 1.5s infinite ease-in-out;
     }
 
     .big-kiss {
-      font-size: 4rem;
+      font-size: 3.8rem;
     }
 
     @keyframes pulse {
@@ -182,7 +256,7 @@
   </audio>
 
   <div class="container">
-    <!-- STAGE 1: THE PROPOSAL -->
+    <!-- STAGE 0: THE PROPOSAL -->
     <div id="proposalStage">
       <div id="heartContainer">❤️</div>
       <h1 id="question">WOULD YOU LIKE TO BE MY GIRL FRIEND?</h1>
@@ -192,136 +266,92 @@
       </div>
     </div>
 
-    <!-- STAGE 2: GIRLFRIEND APLICATION -->
-    <div id="applicationStage" class="hidden">
+    <!-- SLIDE 1: SECTION 1 - BASIC INFORMATION (PART 1) -->
+    <div id="slide1" class="hidden">
       <div class="kiss-animation">💋 😘 💋</div>
       <h1>GIRLFRIEND APLICATION</h1>
-      <p class="subtitle">Please complete these mandatory terms before we make it official:</p>
+      <div class="slide-badge">Slide 1 of 3 • Section 1: Basic Info</div>
 
-      <div class="question-item">
-        <p>1. Are you in or near Kiambu? 📍</p>
-        <div class="radio-group">
-          <label><input type="radio" name="q1" value="yes" checked> YES</label>
-          <label><input type="radio" name="q1" value="no"> NO</label>
-        </div>
+      <div class="form-group">
+        <label for="fullName">Full name:</label>
+        <input type="text" id="fullName" placeholder="Enter your full name...">
       </div>
 
-      <div class="question-item">
-        <p>2. Do you promise to share your fries with me? 🍟</p>
-        <div class="radio-group">
-          <label><input type="radio" name="q2" value="yes" checked> YES</label>
-          <label><input type="radio" name="q2" value="no"> NO</label>
-        </div>
+      <div class="form-group">
+        <label for="age">Age:</label>
+        <input type="number" id="age" placeholder="Your age...">
       </div>
 
-      <div class="question-item">
-        <p>3. Will you let me spoil you and take you on cute dates? ✨</p>
-        <div class="radio-group">
-          <label><input type="radio" name="q3" value="yes" checked> YES</label>
-          <label><input type="radio" name="q3" value="no"> NO</label>
-        </div>
+      <div class="form-group">
+        <label for="location">Location:</label>
+        <input type="text" id="location" placeholder="e.g., Kiambu, Ruiru, Nairobi...">
       </div>
 
-      <div class="question-item">
-        <p>4. Do you accept unlimited hugs and forehead kisses? 🥰</p>
-        <div class="radio-group">
-          <label><input type="radio" name="q4" value="yes" checked> YES</label>
-          <label><input type="radio" name="q4" value="no"> NO</label>
-        </div>
+      <div class="form-group">
+        <label for="nickname">Nickname you'd like me to use:</label>
+        <input type="text" id="nickname" placeholder="Babe, Shawty, Queen...">
       </div>
 
-      <button id="submitAppBtn" class="action-btn">SUBMIT APLICATION 💌</button>
+      <div class="nav-row">
+        <button type="button" class="action-btn" onclick="goToSlide(2)">NEXT SLIDE ➡️</button>
+      </div>
     </div>
 
-    <!-- STAGE 3: FINAL APPROVAL & INSTAGRAM REDIRECT -->
-    <div id="finalStage" class="hidden">
-      <div class="kiss-animation big-kiss">😘💋❤️</div>
-      <h1>APLICATION APPROVED!</h1>
-      <p class="final-msg">You are officially my girlfriend! Tap below to jump straight into my DMs so we can plan our Kiambu date. 🥰</p>
-      <a href="https://ig.me" target="_blank" class="action-btn insta-btn">CHAT ON INSTAGRAM 💬</a>
+    <!-- SLIDE 2: SECTION 1 - BASIC INFORMATION (PART 2) -->
+    <div id="slide2" class="hidden">
+      <div class="kiss-animation">😘 💋 😘</div>
+      <h1>GIRLFRIEND APLICATION</h1>
+      <div class="slide-badge">Slide 2 of 3 • Section 1: Vibe Check</div>
+
+      <div class="form-group">
+        <label for="instaUser">Instagram username:</label>
+        <input type="text" id="instaUser" placeholder="@yourusername">
+      </div>
+
+      <div class="form-group">
+        <label for="relStatus">Relationship status:</label>
+        <select id="relStatus">
+          <option value="Single & ready for you">Single & ready for you</option>
+          <option value="Basically yours already">Basically yours already</option>
+          <option value="Applying for the position">Applying for the position</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="loveLang">What's your preferred love language?</label>
+        <select id="loveLang">
+          <option value="Quality Time">Quality Time</option>
+          <option value="Physical Touch">Physical Touch</option>
+          <option value="Words of Affirmation">Words of Affirmation</option>
+          <option value="Receiving Gifts">Receiving Gifts</option>
+          <option value="Acts of Service">Acts of Service</option>
+          <option value="All of the above">All of the above</option>
+        </select>
+      </div>
+
+      <div class="nav-row">
+        <button type="button" class="action-btn back-btn" onclick="goToSlide(1)">⬅️ BACK</button>
+        <button type="button" class="action-btn" onclick="goToSlide(3)">NEXT SLIDE ➡️</button>
+      </div>
     </div>
-  </div>
 
-  <script>
-    const yesBtn = document.getElementById('yesBtn');
-    const noBtn = document.getElementById('noBtn');
-    const question = document.getElementById('question');
-    const bgMusic = document.getElementById('bgMusic');
-    const proposalStage = document.getElementById('proposalStage');
-    const applicationStage = document.getElementById('applicationStage');
-    const finalStage = document.getElementById('finalStage');
-    const submitAppBtn = document.getElementById('submitAppBtn');
+    <!-- SLIDE 3: BONUS MANDATORY MCQ & DISCLAIMER -->
+    <div id="slide3" class="hidden">
+      <div class="kiss-animation">💋 🥰 💋</div>
+      <h1>GIRLFRIEND APLICATION</h1>
+      <div class="slide-badge">Slide 3 of 3 • Bonus Mandatory Question</div>
 
-    let yesScale = 1;
-    let noScale = 1;
-    let noShift = 15;
-    let musicStarted = false;
+      <div class="mcq-box">
+        <p>33. Your boyfriend hasn't replied for 2 hours. You:</p>
+        <label class="mcq-option"><input type="radio" name="q33" value="A. Continue with my day." checked> A. Continue with my day.</label>
+        <label class="mcq-option"><input type="radio" name="q33" value="B. Send a meme."> B. Send a meme.</label>
+        <label class="mcq-option"><input type="radio" name="q33" value="C. Check if he's alive."> C. Check if he's alive.</label>
+        <label class="mcq-option"><input type="radio" name="q33" value="D. Start planning our breakup."> D. Start planning our breakup.</label>
+      </div>
 
-    const phrases = [
-      "ARE YOU SURE? 🥺",
-      "THINK AGAIN! 👀",
-      "PRETTY PLEASE? 💞",
-      "WRONG BUTTON! ❌",
-      "YOU DON'T MEAN THAT! 😭",
-      "MAYBE RE-READ THE OPTION? 🤔"
-    ];
-    let phraseIndex = 0;
+      <div class="disclaimer">
+        <strong>Application disclaimer:</strong> Submission does not guarantee employment. The recruitment manager reserves the right to be dramatic.
+      </div>
 
-    function startMusic() {
-      if (!musicStarted) {
-        bgMusic.play().then(() => { musicStarted = true; }).catch(() => {});
-      }
-    }
-
-    function fireConfetti(durationSeconds) {
-      const end = Date.now() + (durationSeconds * 1000);
-      (function frame() {
-        confetti({ particleCount: 6, angle: 60, spread: 60, origin: { x: 0, y: 0.8 } });
-        confetti({ particleCount: 6, angle: 120, spread: 60, origin: { x: 1, y: 0.8 } });
-        if (Date.now() < end) requestAnimationFrame(frame);
-      }());
-    }
-
-    noBtn.addEventListener('click', () => {
-      startMusic();
-      question.innerHTML = phrases[phraseIndex];
-      phraseIndex = (phraseIndex + 1) % phrases.length;
-
-      yesScale += 0.35;
-      yesBtn.style.transform = `scale(${yesScale})`;
-      
-      noScale -= 0.12;
-      noBtn.style.transform = `scale(${noScale})`;
-      
-      if (noShift > 2) {
-        noShift -= 3;
-        noBtn.style.right = `${noShift}%`;
-      }
-      if (noScale <= 0.2) noBtn.style.display = 'none';
-    });
-
-    yesBtn.addEventListener('click', () => {
-      startMusic();
-      proposalStage.classList.add('hidden');
-      applicationStage.classList.remove('hidden');
-      fireConfetti(3);
-    });
-
-    submitAppBtn.addEventListener('click', () => {
-      const q1 = document.querySelector('input[name="q1"]:checked').value;
-      const q2 = document.querySelector('input[name="q2"]:checked').value;
-      const q3 = document.querySelector('input[name="q3"]:checked').value;
-      const q4 = document.querySelector('input[name="q4"]:checked').value;
-
-      if (q1 === 'no' || q2 === 'no' || q3 === 'no' || q4 === 'no') {
-        alert("Nice try! You must select YES on all terms (including being near Kiambu!) to become my girlfriend! 😘");
-        return;
-      }
-
-      applicationStage.classList.add('hidden');
-      finalStage.classList.remove('hidden');
-      fireConfetti(6);
-    });
-  </script>
-</body>
-</html>
+      <div class="nav-row">
+        <button type="button" class="action-btn back-btn" onclick="goToSlide(2)">⬅️ BACK</button>
